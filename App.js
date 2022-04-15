@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 
-// import all the components we are going to use
 import {
   SafeAreaView,
   View,
@@ -13,7 +12,6 @@ import {
   Linking,
 } from 'react-native';
 
-//import all the components we are going to use.
 import Geolocation from '@react-native-community/geolocation';
 
 const App = () => {
@@ -45,7 +43,6 @@ const App = () => {
             },
           );
           if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-            //To Check, If Permission is granted
             getOneTimeLocation();
             subscribeLocationLocation();
           } else {
@@ -65,22 +62,17 @@ const App = () => {
   const getOneTimeLocation = () => {
     setLocationStatus('Getting Location ...');
     Geolocation.getCurrentPosition(
-      //Will give you the current location
       (position) => {
         setLocationStatus('You are Here');
 
-        //getting the Longitude from the location json
         const currentLongitude = 
           JSON.stringify(position.coords.longitude);
 
-        //getting the Latitude from the location json
         const currentLatitude = 
           JSON.stringify(position.coords.latitude);
 
-        //Setting Longitude state
         setCurrentLongitude(currentLongitude);
         
-        //Setting Longitude state
         setCurrentLatitude(currentLatitude);
       },
       (error) => {
@@ -97,20 +89,16 @@ const App = () => {
   const subscribeLocationLocation = () => {
     watchID = Geolocation.watchPosition(
       (position) => {
-        //Will give you the location on location change
         
         setLocationStatus('You are Here');
         console.log(position);
 
-        //getting the Longitude from the location json        
         const currentLongitude =
           JSON.stringify(position.coords.longitude);
 
-        //getting the Latitude from the location json
         const currentLatitude = 
           JSON.stringify(position.coords.latitude);
 
-        //Setting Longitude state
         setCurrentLongitude(currentLongitude);
 
         //Setting Latitude state
